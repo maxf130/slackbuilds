@@ -1,0 +1,41 @@
+#!/bin/sh -e
+# Maximilian Friedersdorff revision data 2016/10/02
+
+# Set initial variables
+CWD=$(pwd)
+if [ "$TMP" = "" ]; then
+  TMP=/tmp
+fi
+
+VERSION=2.10
+PKG_VERSION=2.10
+BUILD=${BUILD:-1_maf}
+
+APP=todo.txt-cli
+
+PKG=$TMP/package-$APP
+
+rm -rf $PKG
+mkdir -p $TMP $PKG
+rm -rf $TMP/$APP-$VERSION
+
+cd $TMP || exit 1
+
+tar -zxvf $CWD/$APP-$VERSION.tar.gz || exit 1
+cd $APP-$VERSION || exit 1
+chown -R root:root .
+chmod -R u+w,go+r-w,a-s
+
+mkdir -p $PKG/usr/bin
+cp -a todo.sh $PKG/usr/bin/
+mkdir -p $PKG/usr/share/bash-completion/completions
+cp -a todo_completion $PKG/usr/share/bash-completion/completions/todo
+mkdir -p $PKG/etc/todo
+sed "s/^\(export[ \t]*TODO_DIR=\).*/\1~\/.todo/" todo.cfg > $PKG/etc/todo/config
+
+
+mkdir -p $PKG/install
+cat $CWD/slack-desc > $PKG/install/slack-desc
+
+cd $PKG
+/sbin/makepkg -l y -c n $TMP/$APP-$PKG_VERSION-$ARCH-$BUILD.tgz
