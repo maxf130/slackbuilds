@@ -1,0 +1,19 @@
+# HOW TO EDIT THIS FILE:
+# The "handy ruler" below makes it easier to edit a package description.  Line
+# up the first '|' above the ':' following the base package name, and the '|' on
+# the right side marks the last column you can put a character in.  You must make
+# exactly 11 lines for the formatting to be correct.  It's also customary to
+# leave one space after the ':'.
+
+    |-----handy-ruler------------------------------------------------------|
+neomutt: Mutt (the Mutt mail user agent)
+neomutt:
+neomutt: Mutt is a small but very powerful text-based MIME mail client.  
+neomutt: Mutt is highly configurable, and is well suited to the mail power 
+neomutt: user with advanced features like key bindings, keyboard macros, 
+neomutt: mail threading, regular expression searches and a powerful pattern 
+neomutt: matching language for selecting groups of messages.
+neomutt:
+neomutt:
+neomutt:
+neomutt:
